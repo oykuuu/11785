@@ -61,4 +61,13 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(x_train, y_train, epochs=5, verbose=1, batch_size=64)
+model.save_model('trained_model.hdf5')
 print(model.evaluate(x_test, y_test))
+
+
+# load saved model with these lines
+#http://everettsprojects.com/2018/01/30/mnist-adversarial-examples.html
+#from cleverhans.utils_keras import KerasModelWrapper
+#keras.backend.set_learning_phase(False)
+#keras_model = load_model('models/Jan-13-2018.hdf5')
+#wrap = KerasModelWrapper(keras_model)
