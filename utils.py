@@ -32,12 +32,13 @@ def permute_pixels(images, seed):
     n_sample, img_r, img_c, n_channels = images.shape
     np.random.seed(seed)
     perm_idx = np.random.permutation(img_r*img_c)
+    permuted_images = np.zeros_like(images)
     for idx in range(n_sample):
         for channel in range(n_channels):
             img = images[idx, :, :, channel].flatten()
             img = img[perm_idx]
-            images[idx, :, :, channel] = img.reshape((img_r, img_c))
-    return images
+            permuted_images[idx, :, :, channel] = img.reshape((img_r, img_c))
+    return permuted_images
 
 def get_ppd_model(name='mnist'):
     if name == 'mnist':
