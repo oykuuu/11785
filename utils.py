@@ -123,11 +123,11 @@ def mnist_cnn_model(ppd=True, layerno=0):
         inner = Conv2D(32, kernel_size=(3, 3), activation='relu')(input_tensor)
     
     if ppd and layerno==1:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     
     inner = Conv2D(64, (3, 3), activation='relu')(inner)
     if ppd and layerno==2:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     inner = MaxPooling2D(pool_size=(2, 2))(inner)
     inner = Dropout(0.25)(inner)
     inner = Flatten(name='flatten')(inner)
@@ -160,18 +160,18 @@ def cifar10_cnn_model(ppd=True, layerno=0):
     else:
         inner = Conv2D(32, (3, 3), padding='same', activation='relu')(input_tensor)
     if ppd and layerno==1:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     inner = Conv2D(32, (3, 3), activation='relu')(inner)
     if ppd and layerno==2:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     inner = MaxPooling2D(pool_size=(2, 2))(inner)
     inner = Dropout(0.25)(inner)
     inner = Conv2D(64, (3, 3), padding='same', activation='relu')(inner)
     if ppd and layerno==3:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     inner = Conv2D(64, (3, 3), padding='same', activation='relu')(inner)
     if ppd and layerno==4:
-        inner = Lambda(pixel2phase1d, name='pixel2phase1d')(inner)
+        inner = Lambda(pixel2phase, name='pixel2phase')(inner)
     inner = MaxPooling2D(pool_size=(2, 2))(inner)
     inner = Dropout(0.25)(inner)
     inner = Flatten(name='flatten')(inner)
